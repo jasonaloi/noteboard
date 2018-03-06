@@ -1,12 +1,8 @@
-.App {
-  text-align: center;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+body {
+  background: url("wood.jpg") no-repeat center center fixed;
+  background-size: fill;
+  height: 1280px;
+  width: 100%;
 }
 
 .App-title {
@@ -17,16 +13,56 @@
   font-size: large;
 }
 
+.notesContainer {
+  text-align: center;
+}
+
 .note {
   height: 200px;
   width: 200px;
-  margin: 15px;
-  background: rgba(240, 240, 240, 0.5);
+  margin: 25px;
+  padding: 15px;
+  background: rgba(240, 240, 240, 0.7);
   float: left;
-  border: 1px solid #eee;
-  box-shadow: 0px 0px 15px #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 0px 30px 8px rgba(0, 0, 0, 0.5);
+  text-shadow: 0px 0px 2px #fff;
+  border-radius: 3px;
 }
+
+.note h4 {
+  text-align: center;
+  margin-top: 5px;
+}
+
+.form {
+  box-shadow: 0px 0px 1px 1px rgba(100, 100, 100, 0.5);
+  border: 1px solid #aaa;
+  background: rgba(235, 235, 235, 0.9);
+  transform: rotate(356deg);
+}
+
 
 input.note {
   text-align: center;
+}
+
+button {
+  background: rgba(240, 240, 240, 0.6);
+  color: #000;
+  border: 2px solid #ddd;
+  font-size: 1em;
+  margin: 30px;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+button:hover {
+  background: rgba(255, 255 ,255, 0.4);
+  color: white;
+  box-shadow: 0px 0px 20px #fff;
+  text-shadow: 0 0 13px #000;
+  border-color: #fff;
 }

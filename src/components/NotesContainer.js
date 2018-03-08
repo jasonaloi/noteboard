@@ -21,7 +21,7 @@ class NotesContainer extends Component {
     .catch(error => console.log(error))
   }
 
-  addNewIdea = () => {
+  addNewNote = () => {
     axios.post('http://localhost:4000/api/v1/notes', {note: {title: "New Note", note: ""}})
     .then(response => {
       const notes = update(this.state.notes, { $splice: [[0, 0, response.data]]})
@@ -30,17 +30,38 @@ class NotesContainer extends Component {
     .catch(error => console.log(error))
   }
 
+  updateNote = (note) => {
+    const noteIndex = this.state.notes.findIndex(x => x.id === note.id)
+    const notes = update(this.state.notes, {[noteIndex]: { $set: note }})
+    this.setState({notes: notes})
+    this.state.currentNoteId = null
+  }
+
+  deleteNote = (id) => {
+    axios.delete(`http://localhost:4000/api/v1/notes/${id}`)
+    .then(response => {
+      const noteIndex = this.state.notes.findIndex(x => x.id === id)
+      const notes = update(this.state.notes, { $splice: [[noteIndex, 1]]})
+      this.setState({notes: notes})
+    })
+    .catch(error => console.log(error))
+  }
+
+  enableEditing = (id) => {
+    this.setState({currentNoteId: id}, () => { this.title.focus() })
+  }
+
   render() {
     return (
       <div className="notesContainer">
         <div>
-          <button onClick={this.addNewIdea}>
+          <button onClick={this.addNewNote}>
             New Note
           </button>
         </div>
         {this.state.notes.map((note) => {
           return (
-            (note.id === this.state.currentNoteId) ? (<NoteForm note={note} key={note.id}/>) : (<Note note={note} key={note.id}/>)
+            (this.state.currentNoteId === note.id) ? (<NoteForm note={note} key={note.id} updateNote={this.updateNote} titleRef= {input => this.title = input}/>) : (<Note note={note} key={note.id} onClick={this.enableEditing} onDelete={this.deleteNote}/>)
           )
         })}
       </div>

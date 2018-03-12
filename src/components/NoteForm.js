@@ -17,7 +17,7 @@ class NoteForm extends Component {
 
   handleBlur = (e) => {
     const note = {title: this.state.title, note:this.state.note}
-    axios.put(`http://localhost:4000/api/v1/notes/${this.props.note.id}`, {note: note})
+    axios.put(`https://jboard-api.herokuapp.com/api/v1/notes/${this.props.note.id}`, {note: note})
     .then(response => {
       this.props.updateNote(response.data)
     })

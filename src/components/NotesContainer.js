@@ -14,7 +14,7 @@ class NotesContainer extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:4000/api/v1/notes.json')
+    axios.get('https://jboard-api.herokuapp.com/api/v1/notes.json')
     .then(response => {
       this.setState({notes: response.data})
     })
@@ -22,7 +22,7 @@ class NotesContainer extends Component {
   }
 
   addNewNote = () => {
-    axios.post('http://localhost:4000/api/v1/notes', {note: {title: "New Note", note: ""}})
+    axios.post('https://jboard-api.herokuapp.com/api/v1/notes', {note: {title: "New Note", note: ""}})
     .then(response => {
       const notes = update(this.state.notes, { $splice: [[0, 0, response.data]]})
       this.setState({notes: notes, currentNoteId: response.data.id})
@@ -38,7 +38,7 @@ class NotesContainer extends Component {
   }
 
   deleteNote = (id) => {
-    axios.delete(`http://localhost:4000/api/v1/notes/${id}`)
+    axios.delete(`https://jboard-api.herokuapp.com/api/v1/notes/${id}`)
     .then(response => {
       const noteIndex = this.state.notes.findIndex(x => x.id === id)
       const notes = update(this.state.notes, { $splice: [[noteIndex, 1]]})

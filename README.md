@@ -1,8 +1,8 @@
 # Noteboard App (React Front-End only)
-Simple Ruby on Rails 5 Web App to catalog shared view components.
+React Noteboard Sample Web App with separate Rails 5 API.
 
 # Demo
-The API is hosted on Heroku's free tier, and may take a minute or two to load.
+The Rails 5 API is hosted on Heroku's free tier, and may take a minute to load.
 [https://jasonaloi.github.io/noteboard/](https://jasonaloi.github.io/noteboard/)
 
 # API
